@@ -6,7 +6,7 @@
 /*   By: lleichtn <lleichtn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:04:13 by lleichtn          #+#    #+#             */
-/*   Updated: 2025/05/17 17:18:11 by lleichtn         ###   ########.fr       */
+/*   Updated: 2025/05/17 18:46:35 by lleichtn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,32 @@ int	check_map_name(char *filename)
 	return (1);
 }
 
-// Vérifie que la map est bien fermée par des murs '1'
 void	is_map_enclosed(t_map *map)
 {
 	int	x;
-	int	y;
 
 	x = 0;
 	while (x < map->width)
 	{
 		if (map->grid[0][x] != '1' || map->grid[map->height - 1][x] != '1')
+		{
+			write(2, "Error\nMap pas valide\n", 22);
+			free_map(map);
+			get_next_line(-1);
 			exit(1);
+		}
 		x++;
 	}
-	y = 0;
-	while (y < map->height)
+	x = 0;
+	while (x++ < map->height)
 	{
-		if (map->grid[y][0] != '1' || map->grid[y][map->width - 1] != '1')
+		if (map->grid[x][0] != '1' || map->grid[x][map->width - 1] != '1')
+		{
+			write(2, "Error\nMap pas valide\n", 22);
+			free_map(map);
+			get_next_line(-1);
 			exit(1);
-		y++;
+		}
 	}
 }
 

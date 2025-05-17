@@ -6,7 +6,7 @@
 /*   By: lleichtn <lleichtn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:21:58 by lleichtn          #+#    #+#             */
-/*   Updated: 2025/05/17 17:03:47 by lleichtn         ###   ########.fr       */
+/*   Updated: 2025/05/17 18:44:05 by lleichtn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	main(int argc, char **argv)
 	if (!is_valid_path(game.map.grid, game.map.player_x,
 			game.map.player_y, dim))
 	{
-		printf("llll\n");
+		write(2, "Error\nno path possible\n", 22);
 		free_map(&game.map);
 		get_next_line(-1);
 		return (1);

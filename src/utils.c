@@ -6,7 +6,7 @@
 /*   By: lleichtn <lleichtn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:18:49 by lleichtn          #+#    #+#             */
-/*   Updated: 2025/05/17 17:39:26 by lleichtn         ###   ########.fr       */
+/*   Updated: 2025/05/17 18:46:23 by lleichtn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,22 @@
 int	is_rectangular(t_map *map)
 {
 	int	y;
+	int	x;
+	int	width;
 
+	if (!map || !map->grid || !map->grid[0])
+		return (0);
 	y = 0;
+	width = 0;
+	while (map->grid[0][width] && map->grid[0][width] != '\n')
+		width++;
+	map->width = width;
 	while (map->grid[y])
 	{
-		if ((int)ft_strlen(map->grid[y]) - 1 != map->width)
+		x = 0;
+		while (map->grid[y][x] && map->grid[y][x] != '\n')
+			x++;
+		if (x != width)
 			return (0);
 		y++;
 	}
