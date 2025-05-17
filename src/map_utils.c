@@ -6,7 +6,7 @@
 /*   By: lleichtn <lleichtn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:04:13 by lleichtn          #+#    #+#             */
-/*   Updated: 2025/05/17 18:46:35 by lleichtn         ###   ########.fr       */
+/*   Updated: 2025/05/17 19:08:53 by lleichtn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	is_map_enclosed(t_map *map)
 		}
 		x++;
 	}
-	x = 0;
-	while (x++ < map->height)
+	x = -1;
+	while (++x < map->height)
 	{
 		if (map->grid[x][0] != '1' || map->grid[x][map->width - 1] != '1')
 		{
