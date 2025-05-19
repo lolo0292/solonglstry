@@ -6,7 +6,7 @@
 /*   By: lleichtn <lleichtn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:04:03 by lleichtn          #+#    #+#             */
-/*   Updated: 2025/05/17 20:02:30 by lleichtn         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:27:58 by lleichtn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	check_map_characters(t_map *map)
 			if (!is_valid_char(map->grid[y][x]))
 			{
 				write(2, "Erreur : caractère invalide dans la map\n", 40);
+				free_map_struct(map->grid, map->height);
 				exit(1);
 			}
 			x++;
@@ -44,17 +45,39 @@ void	check_map_characters(t_map *map)
 	}
 }
 
-void	map_dim(char *filename, t_map *map)
+// void	map_dim(char *filename, t_map *map)
+// {
+// 	int		fd;
+// 	char	*line;
+// 	int		len;
+
+// 	fd = open(filename, O_RDONLY);
+// 	if (fd < 0)
+// 		exit(1);
+// 	map->height = 0;
+// 	map->width = 0;
+// 	line = get_next_line(fd);
+// 	while (line)
+// 	{
+// 		if (line[0] != '\n' && line[0] != '\0')
+// 		{
+// 			if (map->height == 0)
+// 			{
+// 				len = ft_strlen(line);
+// 				map->width = len - (line[len - 1] == '\n');
+// 			}
+// 			map->height++;
+// 		}
+// 		free(line);
+// 		line = get_next_line(fd);
+// 	}
+// 	close(fd);
+// }
+void	count_map_dimensions(int fd, t_map *map)
 {
-	int		fd;
 	char	*line;
 	int		len;
 
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		exit(1);
-	map->height = 0;
-	map->width = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -70,6 +93,23 @@ void	map_dim(char *filename, t_map *map)
 		free(line);
 		line = get_next_line(fd);
 	}
+}
+
+void	map_dim(char *filename, t_map *map)
+{
+	int		fd;
+
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+	{
+		write(2, "Erreur : fichier ", 18);
+		write(2, filename, ft_strlen(filename));
+		write(2, " introuvable\n", 13);
+		exit(1);
+	}
+	map->height = 0;
+	map->width = 0;
+	count_map_dimensions(fd, map);
 	close(fd);
 }
 

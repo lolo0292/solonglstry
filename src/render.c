@@ -6,7 +6,7 @@
 /*   By: lleichtn <lleichtn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:18:15 by lleichtn          #+#    #+#             */
-/*   Updated: 2025/05/17 20:21:05 by lleichtn         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:19:19 by lleichtn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,24 +67,23 @@ void	load_textures(t_game *game)
 	game->textures[0] = mlx_xpm_file_to_image(game->mlx, "./sprites/wall.xpm",
 			&game->tex_width, &game->tex_height);
 	if (!game->textures[0])
-		exit(1);
+		exit_clean(game, 0, "Erreur : .xpm introuvable \n");
 	game->textures[1] = mlx_xpm_file_to_image(game->mlx, "./sprites/floor.xpm",
 			&game->tex_width, &game->tex_height);
 	if (!game->textures[1])
-		exit(1);
-	game->textures[2] = mlx_xpm_file_to_image
-		(game->mlx, "./sprites/collectible.xpm",
+		exit_clean(game, 1, "Erreur : .xpm introuvable \n");
+	game->textures[2] = mlx_xpm_file_to_image(game->mlx, "./sprites/c.xpm",
 			&game->tex_width, &game->tex_height);
 	if (!game->textures[2])
-		exit(1);
+		exit_clean(game, 2, "Erreur : .xpm introuvable \n");
 	game->textures[3] = mlx_xpm_file_to_image(game->mlx, "./sprites/exit.xpm",
 			&game->tex_width, &game->tex_height);
 	if (!game->textures[3])
-		exit(1);
+		exit_clean(game, 3, "Erreur : .xpm introuvable\n");
 	game->textures[4] = mlx_xpm_file_to_image(game->mlx, "./sprites/player.xpm",
 			&game->tex_width, &game->tex_height);
 	if (!game->textures[4])
-		exit(1);
+		exit_clean(game, 4, "Erreur : .xpm introuvable \n");
 }
 
 void	check_xpm_files(void)
@@ -94,7 +93,7 @@ void	check_xpm_files(void)
 
 	paths[0] = "./sprites/wall.xpm";
 	paths[1] = "./sprites/floor.xpm";
-	paths[2] = "./sprites/collectible.xpm";
+	paths[2] = "./sprites/c.xpm";
 	paths[3] = "./sprites/exit.xpm";
 	paths[4] = "./sprites/player.xpm";
 	i = 0;
