@@ -6,7 +6,7 @@
 /*   By: lleichtn <lleichtn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:18:15 by lleichtn          #+#    #+#             */
-/*   Updated: 2025/05/17 14:32:40 by lleichtn         ###   ########.fr       */
+/*   Updated: 2025/05/17 20:21:05 by lleichtn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	display_move(t_game *game)
 	char	*msg;
 
 	moves_str = ft_itoa(game->moves);
-	msg = ft_strjoin("Déplacements : ", moves_str);
+	msg = ft_strjoin("Mouvements : ", moves_str);
 	mlx_string_put(game->mlx, game->win, 10, 10, 0xFFFFFF, msg);
 	free(moves_str);
 	free(msg);

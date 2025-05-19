@@ -6,7 +6,7 @@
 /*   By: lleichtn <lleichtn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:01:10 by lleichtn          #+#    #+#             */
-/*   Updated: 2025/05/17 20:04:23 by lleichtn         ###   ########.fr       */
+/*   Updated: 2025/05/19 10:49:18 by lleichtn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,6 @@ int		is_valid_path(char **map, int x, int y, t_dim dim);
 void	free_map_struct(char **map, int h);
 void	check_xpm_files(void);
 void	free_map_struct(char **map, int h);
-void	display_move(t_game *game);
 void	display_move(t_game *game);
 int		is_rectangular(t_map *map);
 int		is_valid_path(char **map, int x, int y, t_dim dim);
