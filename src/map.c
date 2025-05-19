@@ -6,7 +6,7 @@
 /*   By: lleichtn <lleichtn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:04:03 by lleichtn          #+#    #+#             */
-/*   Updated: 2025/05/19 17:44:28 by lleichtn         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:01:05 by lleichtn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,55 +45,6 @@ void	check_map_characters(t_map *map)
 	}
 }
 
-// void	map_dim(char *filename, t_map *map)
-// {
-// 	int		fd;
-// 	char	*line;
-// 	int		len;
-
-// 	fd = open(filename, O_RDONLY);
-// 	if (fd < 0)
-// 		exit(1);
-// 	map->height = 0;
-// 	map->width = 0;
-// 	line = get_next_line(fd);
-// 	while (line)
-// 	{
-// 		if (line[0] != '\n' && line[0] != '\0')
-// 		{
-// 			if (map->height == 0)
-// 			{
-// 				len = ft_strlen(line);
-// 				map->width = len - (line[len - 1] == '\n');
-// 			}
-// 			map->height++;
-// 		}
-// 		free(line);
-// 		line = get_next_line(fd);
-// 	}
-// 	close(fd);
-// }
-// void	count_map_dimensions(int fd, t_map *map)
-// {
-// 	char	*line;
-// 	int		len;
-
-// 	line = get_next_line(fd);
-// 	while (line)
-// 	{
-// 		if (line[0] != '\n' && line[0] != '\0')
-// 		{
-// 			if (map->height == 0)
-// 			{
-// 				len = ft_strlen(line);
-// 				map->width = len - (line[len - 1] == '\n');
-// 			}
-// 			map->height++;
-// 		}
-// 		free(line);
-// 		line = get_next_line(fd);
-// 	}
-// }
 void	count_map_dimensions(int fd, t_map *map)
 {
 	char	*line;
@@ -138,52 +89,6 @@ void	map_dim(char *filename, t_map *map)
 	count_map_dimensions(fd, map);
 	close(fd);
 }
-
-// static void	clear_trailing_lines(int fd)
-// {
-// 	char	*line;
-
-// 	line = get_next_line(fd);
-// 	while (line)
-// 	{
-// 		free(line);
-// 		line = get_next_line(fd);
-// 	}
-// }
-
-// static void	load_valid_lines(int fd, t_map *map)
-// {
-// 	int		i;
-// 	char	*line;
-
-// 	i = 0;
-// 	line = get_next_line(fd);
-// 	while (line && i < map->height)
-// 	{
-// 		if (line[0] && line[0] != '\n')
-// 			map->grid[i++] = line;
-// 		else
-// 			free(line);
-// 		if (i < map->height)
-// 			line = get_next_line(fd);
-// 	}
-// 	map->grid[i] = NULL;
-// 	clear_trailing_lines(fd);
-// }
-
-// void	map_load(char *filename, t_map *map)
-// {
-// 	int	fd;
-
-// 	fd = open(filename, O_RDONLY);
-// 	if (fd < 0)
-// 		exit(1);
-// 	map->grid = malloc(sizeof(char *) * (map->height + 1));
-// 	if (!map->grid)
-// 		exit(1);
-// 	load_valid_lines(fd, map);
-// 	close(fd);
-// }
 
 void	parse_map(char *filename, t_map *map)
 {
