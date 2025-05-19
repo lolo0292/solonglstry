@@ -6,7 +6,7 @@
 /*   By: lleichtn <lleichtn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:04:03 by lleichtn          #+#    #+#             */
-/*   Updated: 2025/05/19 16:27:58 by lleichtn         ###   ########.fr       */
+/*   Updated: 2025/05/19 17:44:28 by lleichtn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,27 @@ void	check_map_characters(t_map *map)
 // 	}
 // 	close(fd);
 // }
+// void	count_map_dimensions(int fd, t_map *map)
+// {
+// 	char	*line;
+// 	int		len;
+
+// 	line = get_next_line(fd);
+// 	while (line)
+// 	{
+// 		if (line[0] != '\n' && line[0] != '\0')
+// 		{
+// 			if (map->height == 0)
+// 			{
+// 				len = ft_strlen(line);
+// 				map->width = len - (line[len - 1] == '\n');
+// 			}
+// 			map->height++;
+// 		}
+// 		free(line);
+// 		line = get_next_line(fd);
+// 	}
+// }
 void	count_map_dimensions(int fd, t_map *map)
 {
 	char	*line;
@@ -81,15 +102,20 @@ void	count_map_dimensions(int fd, t_map *map)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (line[0] != '\n' && line[0] != '\0')
+		if (line[0] == '\n' || line[0] == '\0')
 		{
-			if (map->height == 0)
-			{
-				len = ft_strlen(line);
-				map->width = len - (line[len - 1] == '\n');
-			}
-			map->height++;
+			write(2, "Erreur : ligne vide détectée dans la map\n", 42);
+			free(line);
+			get_next_line(-1);
+			close(fd);
+			exit(1);
 		}
+		if (map->height == 0)
+		{
+			len = ft_strlen(line);
+			map->width = len - (line[len - 1] == '\n');
+		}
+		map->height++;
 		free(line);
 		line = get_next_line(fd);
 	}
